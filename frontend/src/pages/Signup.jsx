@@ -41,7 +41,8 @@ const Signup = ({setIsLoggedIn}) => {
       setEotp(response.data.pass); 
       // Assuming the OTP is returned in response.data.pass
       console.log('Email sent successfully');
-      console.log(response.data.pass);
+      // console.log(response.data.pass);
+
       setDetailsgot(true);
     } catch (error) {
       setSpin(false);
@@ -70,8 +71,8 @@ const Signup = ({setIsLoggedIn}) => {
     }
   }
   const pinSubmit = (pinChild) => {
-    console.log("pin",pinChild);
-    console.log("otp",eotp)
+    // console.log("pin",pinChild);
+    // console.log("otp",eotp)
     if (pinChild == eotp) {
       setDetailsgot(false)
       signupApi();
