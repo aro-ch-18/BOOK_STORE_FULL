@@ -1,0 +1,10 @@
+import React from 'react'
+
+export const Spinner = () => {
+  return (
+    // <div className='flex items-center justify-center'>
+       <div className='animate-ping h-16 w-16 rounded-full bg-sky-600 '></div>
+    // </div>
+   
+  )
+}
