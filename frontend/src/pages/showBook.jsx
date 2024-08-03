@@ -15,7 +15,7 @@ export const ShowBook = () => {
         const token = localStorage.getItem('token');
         setLoading(true);
         axios
-            .get(`http://localhost:5555/api/v1/book/getBookId/${id}`, {
+            .get(`${import.meta.env.VITE_API_URL}/book/getBookId/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
