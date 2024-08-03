@@ -67,6 +67,7 @@ const Signup = ({setIsLoggedIn}) => {
       navigate('/login');
       toast.success('Signup successful. Please login to continue!')
     } catch (error) {
+      setSpin(false);
       setMessage(error.response.data.message);
     }
   }
