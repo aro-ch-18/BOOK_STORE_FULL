@@ -65,7 +65,7 @@ export const EditBook = () => {
         
     }
   return (
-    <div className='p-4'>
+    <div className='p-4 min-h-[82vh]'>
         <BackButton/>
         <h1 className='text-3xl my-4'> Edit Book</h1>
         {

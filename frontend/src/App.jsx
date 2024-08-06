@@ -11,6 +11,8 @@ import Signup from './pages/Signup'
 import { useState } from 'react'
 import  NavBar  from './Components/NavBar'
 import PrivateRoute from './pages/PrivateRoute'
+import Footer from './Components/Footer'
+import {  NotFound } from './pages/NotFound'
 export const App = () => {
   const [isloggedIn,setIsLoggedIn]=useState(false);
   // console.log(process.env.API_URL)
@@ -26,7 +28,7 @@ export const App = () => {
   }, []);
  console.log("app",isloggedIn)
   return (
-    <div className='h-screen'>
+    <div className='min-h-screen  '>
     <NavBar isloggedIn={isloggedIn} setIsLoggedIn={setIsLoggedIn}></NavBar>
     {/* <Login/>
     <Signup/> */}
@@ -48,8 +50,9 @@ export const App = () => {
       <Route path="/book/create" element={<PrivateRoute isLoggedIn={isloggedIn}>
         <CreateBook/>
       </PrivateRoute>}/>
+      <Route path="/notfound" element={<NotFound/>}></Route>
     </Routes>
-
+      <Footer></Footer>
   
     
     </div>

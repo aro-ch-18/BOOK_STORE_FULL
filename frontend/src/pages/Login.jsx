@@ -19,6 +19,9 @@ const LoginPage = ({ setIsLoggedIn }) => {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/login`, { email, password });
       setSpin(false);
       // Handle successful login, save token, and redirect
+      console.log("Response", response)
+      localStorage.setItem("email",response.data.user.email)
+      localStorage.setItem("userid",response.data.user._id)
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', response.data.user.name);
       console.log('Login successful:', response.data);
@@ -33,7 +36,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <div className="h-full flex items-center justify-center bg-gray-100">{
+    <div className=" flex items-center justify-center bg-gray-100 min-h-[82vh]">{
       spin?
       <PulseLoader color="#13d1e1" />
       :

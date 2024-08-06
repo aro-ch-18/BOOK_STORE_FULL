@@ -88,7 +88,7 @@ const Signup = ({setIsLoggedIn}) => {
     
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-[82vh] flex items-center justify-center bg-gray-100">
       {
         spin?
         <><PulseLoader color="#13d1e1" /></>:
