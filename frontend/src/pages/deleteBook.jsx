@@ -11,11 +11,14 @@ export const DeleteBook = () => {
   function deleteHandler(){
     setLoading(true);
     const token=localStorage.getItem("token");
+    const data={
+      id: localStorage.getItem("userid")
+    }
     axios
-    .delete(`${import.meta.env.VITE_API_URL}/book/deleteBook/${id}`, {
+    .delete(`${import.meta.env.VITE_API_URL}/book/deleteBook/${id}` , {
       headers: {
         Authorization: `Bearer ${token}`
-      }
+      }, data
     })
     .then((response)=>{
       console.log(response);

@@ -1,10 +1,17 @@
 import React, { useEffect, useRef } from 'react'
 import { useState } from 'react';
 
-export const PinInput = ({length,pinSubmit}) => {
+export const PinInput = ({length,pinSubmit,otpto}) => {
     const [pin, setPin] = useState(new Array(length).fill(""));
     const inputRefs=useRef([]);
+    useEffect(()=>{
+        setPin(new Array(length).fill(""))
+        if(inputRefs.current[0]){
+            inputRefs.current[0].focus();
+        }
     
+        
+      },[otpto])
     useEffect(()=>{
         if(inputRefs.current[0]){
             inputRefs.current[0].focus();
@@ -49,7 +56,17 @@ export const PinInput = ({length,pinSubmit}) => {
     <div className='flex justify-center items-center p-4 border   h-80   rounded-lg shadow-lg w-80 bg-white  '>
         <div>
         <div className=' flex items-center justify-center'>
-        <h1 className=' '>Enter the OTP sent to your email:</h1>
+        <h1 className=' '>
+        {
+        otpto==="user"
+        ?
+        "Enter the OTP sent to your email:"
+        :
+        <>
+        Enter the OTP sent to<span className='font-bold'>Master Administrator</span> email:
+        </>
+        }
+          </h1>
 
         </div>
        <div className=' flex items-center justify-center pt-6'>

@@ -13,6 +13,7 @@ import  NavBar  from './Components/NavBar'
 import PrivateRoute from './pages/PrivateRoute'
 import Footer from './Components/Footer'
 import {  NotFound } from './pages/NotFound'
+import AdminRoute from './pages/AdminRoute'
 export const App = () => {
   const [isloggedIn,setIsLoggedIn]=useState(false);
   // console.log(process.env.API_URL)
@@ -26,7 +27,7 @@ export const App = () => {
       setIsLoggedIn(false);
     }
   }, []);
- console.log("app",isloggedIn)
+//  console.log("app",isloggedIn)
   return (
     <div className='min-h-screen  '>
     <NavBar isloggedIn={isloggedIn} setIsLoggedIn={setIsLoggedIn}></NavBar>
@@ -41,7 +42,7 @@ export const App = () => {
       
     
       <Route path="/book/delete/:id" element={<PrivateRoute isLoggedIn={isloggedIn}>
-        <DeleteBook/>
+        <AdminRoute><DeleteBook/></AdminRoute>
       </PrivateRoute>}/>
       <Route path="/book/edit/:id" element={<PrivateRoute isLoggedIn={isloggedIn}>
         <EditBook/>
@@ -51,6 +52,7 @@ export const App = () => {
         <CreateBook/>
       </PrivateRoute>}/>
       <Route path="/notfound" element={<NotFound/>}></Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
       <Footer></Footer>
   

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
 import { RxAvatar } from "react-icons/rx";
+import {RiAdminFill} from "react-icons/ri";
 import toast from 'react-hot-toast';
 import { AiOutlineClose } from "react-icons/ai";
 import { PiBookOpenTextLight } from "react-icons/pi";
@@ -12,11 +13,14 @@ const Navbar = ({ isloggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
 
+  
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem("email");
     localStorage.removeItem('userid');
+    localStorage.removeItem('role') 
+    // localStorage.
     toast.success("Logged out!");
     setIsLoggedIn(false);
     navigate("/login");
@@ -35,9 +39,9 @@ const Navbar = ({ isloggedIn, setIsLoggedIn }) => {
         <div
           className="text-white hover:text-gray-400 flex items-center gap-2 cursor-pointer"
           onClick={() => setModal(true)}
-        >
-          <RxAvatar size={24} />
-          <p className="hidden 1x:block">Hello {isloggedIn ? localStorage.getItem('user') : "Guest"}!</p>
+        >{localStorage.getItem('role')=='admin'?<RiAdminFill size={24} />:<RxAvatar size={24} />}
+          
+          <p className="hidden 1x:block">Hello {isloggedIn ? (localStorage.getItem('role')=='admin'?"Admin":localStorage.getItem('user')) : "Guest"}!</p>
           <p className="1x:hidden">Hello!</p>
         </div>
 
@@ -79,12 +83,23 @@ const Navbar = ({ isloggedIn, setIsLoggedIn }) => {
             className="absolute right-6 top-6  text-3xl text-red-600 cursor-pointer"
             onClick={()=>setModal(false)}
           />
+          <div className="flex justify-between">
           <h2 className="w-fit bg-green-300 rounded-lg px-4 py-2">
-            BOOK STORE
+            {
+              isloggedIn?
+              (localStorage.getItem('role')=='admin'?"ADMINISTRATOR":"BOOK STORE")
+              :
+              ("BOOK STORE")
+            }
           </h2>
-          <h4 className="my-2 text-gray-500">{localStorage.getItem("userid")?localStorage.getItem('userid'):"Welome to this BookStore!"}</h4>
+          
+          </div>
+
+          
+          <h4 className="my-2 text-gray-500">{localStorage.getItem("userid")?(localStorage.getItem("userid")):"Welome to this BookStore!"}</h4>
           <div className="flex justify-start items-center gap-x-2">
-            <FaUser className="text-blue-300 text-2xl" size={24}/>
+            {localStorage.getItem("role")=='admin'?<RiAdminFill className="text-blue-300 text-2xl" size={24}/>:<FaUser className="text-blue-300 text-2xl" size={24}/>}
+            {/* <FaUser className="text-blue-300 text-2xl" size={24}/> */}
             <h2 className="my-1">{localStorage.getItem('user')?localStorage.getItem('user'):"Guest"}</h2>
           </div>
           <div className="flex justify-start items-center gap-x-2">
@@ -95,7 +110,7 @@ const Navbar = ({ isloggedIn, setIsLoggedIn }) => {
   ) : (
     <>
       Mail us at{' '}
-      <a href="mailto:info@arohan.com" className="hover:underline font-bold">
+      <a href="mailto:mcaro0095@gmail.com" className="hover:underline font-bold">
         mcaro0095@gmail.com
       </a>
     </>

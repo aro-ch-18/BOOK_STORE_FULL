@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from "react-hot-toast";
 
 // Use import.meta.env to fetch the API_URL from the environment file
-console.log(import.meta.env.VITE_API_URL);
-console.log("asdasdf")
+// console.log(import.meta.env.VITE_API_URL);
+// console.log("asdasdf")
 
 export const CreateBook = () => {
     const [formData, setFormData] = useState({ title: "", author: "", publishYear: "" });

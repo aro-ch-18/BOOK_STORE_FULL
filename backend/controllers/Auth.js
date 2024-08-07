@@ -9,7 +9,7 @@ require("dotenv").config();
 exports.signup = async (req,res) => {
     try{
         //get data
-        const {name, email, password} = req.body;
+        const {name, email, password,role} = req.body;
         //check if user already exist
         const existingUser = await User.findOne({email});
 
@@ -28,13 +28,13 @@ exports.signup = async (req,res) => {
         catch(err) {
             return res.status(500).json({
                 success:false,
-                message:'Error inn hashing Password',
+                message:'Error in hashing Password',
             });
         }
 
         //create entry for User
         const user = await User.create({
-            name,email,password:hashedPassword
+            name,email,password:hashedPassword,role
         })
 
         return res.status(200).json({

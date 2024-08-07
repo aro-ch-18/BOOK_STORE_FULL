@@ -53,7 +53,7 @@ export const EditBook = () => {
               }
             })
             .then((response)=>{
-                console.log(response);
+                // console.log(response);
                 setLoading(false);
                 toast.success("Updated!")
                 navigate("/")

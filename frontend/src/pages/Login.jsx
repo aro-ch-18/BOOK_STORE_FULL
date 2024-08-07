@@ -9,6 +9,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  // const []
   const[spin,setSpin]=useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,12 +20,13 @@ const LoginPage = ({ setIsLoggedIn }) => {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/login`, { email, password });
       setSpin(false);
       // Handle successful login, save token, and redirect
-      console.log("Response", response)
+      // console.log("Response", response)
       localStorage.setItem("email",response.data.user.email)
       localStorage.setItem("userid",response.data.user._id)
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', response.data.user.name);
-      console.log('Login successful:', response.data);
+      localStorage.setItem('role', response.data.user.role);
+      // console.log('Login successful:', response.data);
       toast.success("Logged In!")
       setIsLoggedIn(true);
       navigate("/");
